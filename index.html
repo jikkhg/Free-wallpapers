@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WALLDARK</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Wallpapers</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>FREE-WALLPAPERS</h1>
+
+    <input
+      type="text"
+      id="search"
+      placeholder="ค้นหาวอลเปเปอร์..."
+    >
+  </header>
+
+  <main class="grid" id="wallpapers">
+
+    <div class="card">
+      <img src="https://picsum.photos/500/700?1">
+
+      <div class="content">
+        <h2>Cyber Dark</h2>
+        <button>ดาวน์โหลด</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/500/700?2">
+
+      <div class="content">
+        <h2>AMOLED Space</h2>
+        <button>ดาวน์โหลด</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/500/700?3">
+
+      <div class="content">
+        <h2>Gaming RGB</h2>
+        <button>ดาวน์โหลด</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
