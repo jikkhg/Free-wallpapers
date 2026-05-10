@@ -16,10 +16,12 @@ header{
   top:0;
   background:#000;
   border-bottom:1px solid #222;
+  z-index:100;
 }
 
 h1{
   margin-bottom:15px;
+  font-size:28px;
 }
 
 #search{
@@ -30,6 +32,10 @@ h1{
   background:#111;
   color:white;
   outline:none;
+}
+
+.ads{
+  padding:20px;
 }
 
 .grid{
