@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Free Wallpapers</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Admin Panel Styles */
+    .admin-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .admin-header h2 {
+      font-size: 28px;
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(26, 26, 46, 0.8) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-card p {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    /* Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-secondary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--accent-color);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-cyan);
+      border-bottom-color: var(--accent-cyan);
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Wallpaper Table */
+    .wallpaper-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .wallpaper-table thead {
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .wallpaper-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--border-color);
+      color: var(--accent-cyan);
+    }
+
+    .wallpaper-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .wallpaper-table tr:hover {
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .wallpaper-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-approved {
+      background: rgba(16, 185, 129, 0.2);
+      color: #86efac;
+    }
+
+    .status-pending {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fcd34d;
+    }
+
+    .status-rejected {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-approve {
+      background: rgba(16, 185, 129, 0.2);
+      color: #86efac;
+      border: 1px solid #10b981;
+    }
+
+    .btn-approve:hover {
+      background: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-reject {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border: 1px solid #dc2626;
+    }
+
+    .btn-reject:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-delete {
+      background: rgba(107, 114, 128, 0.2);
+      color: #d1d5db;
+      border: 1px solid #6b7280;
+    }
+
+    .btn-delete:hover {
+      background: rgba(107, 114, 128, 0.3);
+    }
+
+    /* Users Table */
+    .users-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .users-table thead {
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .users-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--border-color);
+      color: var(--accent-cyan);
+    }
+
+    .users-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Scrollable table wrapper */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .wallpaper-table {
+        font-size: 12px;
+      }
+
+      .wallpaper-table th,
+      .wallpaper-table td {
+        padding: 8px;
+      }
+
+      .wallpaper-thumb {
+        width: 50px;
+        height: 50px;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .btn-small {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-section">
+        <h1>FREE-WALLPAPERS</h1>
+        <span class="tagline">⚙️ Admin Panel</span>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a href="index.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">← Back Home</a>
+        <button id="authBtn" style="padding: 10px 20px; background: var(--accent-cyan); color: var(--primary-color); border: none; border-radius: 8px; cursor: pointer; font-weight: 700;">
+          Login
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="admin-container">
+
+    <div class="admin-header">
+      <h2>⚙️ Admin Dashboard</h2>
+      <span style="color: var(--text-secondary);">Welcome, Admin</span>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Wallpapers</h3>
+        <p id="statWallpapers">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Pending Review</h3>
+        <p id="statPending">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Users</h3>
+        <p id="statUsers">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Downloads</h3>
+        <p id="statDownloads">0</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" data-tab="wallpapers">📸 Wallpapers</button>
+      <button class="tab-btn" data-tab="users">👥 Users</button>
+      <button class="tab-btn" data-tab="analytics">📊 Analytics</button>
+    </div>
+
+    <!-- Wallpapers Tab -->
+    <div class="tab-content active" data-content="wallpapers">
+      <div class="table-wrapper">
+        <table class="wallpaper-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Uploader</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Likes</th>
+              <th>Downloads</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="wallpapersTable">
+            <tr>
+              <td colspan="8" class="empty-message">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div class="tab-content" data-content="users">
+      <div class="table-wrapper">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Joined</th>
+              <th>Uploads</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="usersTable">
+            <tr>
+              <td colspan="6" class="empty-message">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div class="tab-content" data-content="analytics">
+      <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+        <h3>📊 Analytics Coming Soon</h3>
+        <p>Detailed analytics and charts will be available here</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Free Wallpapers. Made with ❤️ by <a href="https://github.com/jikkhg">jikkhg</a></p>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+
+  <!-- Scripts -->
+  <script src="firebase-config.js"></script>
+  <script>
+    const ADMIN_UID = 'YOUR_ADMIN_UID_HERE'; // Set your Firebase UID here
+    const authBtn = document.getElementById('authBtn');
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.dataset.tab;
+        
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.querySelector(`[data-content="${tabName}"]`).classList.add('active');
+        
+        if (tabName === 'wallpapers') loadWallpapers();
+        if (tabName === 'users') loadUsers();
+      });
+    });
+
+    // Auth
+    authBtn.addEventListener('click', async () => {
+      if (window.firebaseAPI.currentUser()) {
+        if (await window.firebaseAPI.logout()) {
+          authBtn.textContent = 'Login';
+        }
+      } else {
+        if (await window.firebaseAPI.loginWithGoogle()) {
+          checkAdminAccess();
+        }
+      }
+    });
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        authBtn.textContent = 'Logout';
+        checkAdminAccess();
+      } else {
+        authBtn.textContent = 'Login';
+      }
+    });
+
+    function checkAdminAccess() {
+      // Check if user is admin (you need to set this up in Firestore)
+      const user = window.firebaseAPI.currentUser();
+      if (!user) {
+        alert('Please login');
+        return;
+      }
+      console.log('Admin panel loaded for:', user.email);
+      loadStats();
+      loadWallpapers();
+    }
+
+    async function loadStats() {
+      try {
+        // Total wallpapers
+        const wallpapers = await db.collection('wallpapers').get();
+        document.getElementById('statWallpapers').textContent = wallpapers.size;
+
+        // Pending
+        const pending = await db.collection('wallpapers')
+          .where('isApproved', '==', false).get();
+        document.getElementById('statPending').textContent = pending.size;
+
+        // Total downloads
+        let totalDownloads = 0;
+        wallpapers.forEach(doc => {
+          totalDownloads += doc.data().downloads || 0;
+        });
+        document.getElementById('statDownloads').textContent = totalDownloads;
+
+        // Users count
+        const users = await db.collection('users').get();
+        document.getElementById('statUsers').textContent = users.size;
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    async function loadWallpapers() {
+      try {
+        const wallpapers = await db.collection('wallpapers')
+          .orderBy('createdAt', 'desc')
+          .limit(50)
+          .get();
+
+        if (wallpapers.empty) {
+          document.getElementById('wallpapersTable').innerHTML = 
+            '<tr><td colspan="8" class="empty-message">No wallpapers found</td></tr>';
+          return;
+        }
+
+        const html = wallpapers.docs.map(doc => {
+          const data = doc.data();
+          return `
+            <tr>
+              <td><img src="${data.imageUrl}" alt="" class="wallpaper-thumb"></td>
+              <td>${data.title}</td>
+              <td>${data.uploaderName || 'Unknown'}</td>
+              <td>${data.category}</td>
+              <td><span class="status-badge ${data.isApproved ? 'status-approved' : 'status-pending'}">
+                ${data.isApproved ? '✅ Approved' : '⏳ Pending'}
+              </span></td>
+              <td>${data.likes || 0}</td>
+              <td>${data.downloads || 0}</td>
+              <td>
+                <div class="action-buttons">
+                  ${!data.isApproved ? `<button class="btn-small btn-approve" onclick="approveWallpaper('${doc.id}')">Approve</button>` : ''}
+                  <button class="btn-small btn-reject" onclick="rejectWallpaper('${doc.id}')">Reject</button>
+                  <button class="btn-small btn-delete" onclick="deleteWallpaper('${doc.id}')">Delete</button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        document.getElementById('wallpapersTable').innerHTML = html;
+      } catch (error) {
+        console.error('Error loading wallpapers:', error);
+      }
+    }
+
+    async function loadUsers() {
+      try {
+        const users = await db.collection('users').get();
+
+        if (users.empty) {
+          document.getElementById('usersTable').innerHTML = 
+            '<tr><td colspan="6" class="empty-message">No users found</td></tr>';
+          return;
+        }
+
+        const html = users.docs.map(doc => {
+          const data = doc.data();
+          return `
+            <tr>
+              <td>${data.displayName || 'Unknown'}</td>
+              <td>${data.email}</td>
+              <td>${data.role || 'user'}</td>
+              <td>${new Date(data.createdAt?.toDate()).toLocaleDateString('th-TH')}</td>
+              <td>0</td>
+              <td>
+                <button class="btn-small btn-delete" onclick="deleteUser('${doc.id}')">Delete</button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        document.getElementById('usersTable').innerHTML = html;
+      } catch (error) {
+        console.error('Error loading users:', error);
+      }
+    }
+
+    async function approveWallpaper(wallpaperId) {
+      try {
+        await db.collection('wallpapers').doc(wallpaperId).update({
+          isApproved: true
+        });
+        alert('✅ Wallpaper approved');
+        loadWallpapers();
+        loadStats();
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    }
+
+    async function rejectWallpaper(wallpaperId) {
+      try {
+        await db.collection('wallpapers').doc(wallpaperId).delete();
+        alert('❌ Wallpaper rejected and deleted');
+        loadWallpapers();
+        loadStats();
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    }
+
+    async function deleteWallpaper(wallpaperId) {
+      if (confirm('Delete this wallpaper?')) {
+        try {
+          await db.collection('wallpapers').doc(wallpaperId).delete();
+          alert('✅ Deleted');
+          loadWallpapers();
+          loadStats();
+        } catch (error) {
+          alert('Error: ' + error.message);
+        }
+      }
+    }
+
+    async function deleteUser(userId) {
+      if (confirm('Delete this user?')) {
+        try {
+          await db.collection('users').doc(userId).delete();
+          alert('✅ User deleted');
+          loadUsers();
+        } catch (error) {
+          alert('Error: ' + error.message);
+        }
+      }
+    }
+
+    // Initial load
+    if (window.firebaseAPI.currentUser()) {
+      checkAdminAccess();
+    }
+  </script>
+
+</body>
+
+</html>
