@@ -3,253 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Wallpapers Hub - ดาวน์โหลดวอลเปเปอร์ฟรี</title>
-    <!-- Fonts -->
+    <title>PikaSearch | ค้นหารูปภาพและไอเดียฟรี</title>
+    <meta name="description" content="ค้นหารูปภาพคุณภาพสูงและไอเดียใหม่ๆ ได้ฟรีจากคลังภาพระดับโลก พร้อมข้อกำหนดการใช้งานที่ชัดเจน">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6645064236411218" crossorigin="anonymous"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#8b5cf6',
-                        secondary: '#06b6d4',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 1.5rem;
-        }
-        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
-        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
-        @media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
-
-        .wallpaper-card {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .wallpaper-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
-        }
-        
-        /* Fixed Ad Containers to prevent availableWidth=0 */
-        .ad-slot-wrapper {
-            min-height: 100px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .gradient-text {
-            background: linear-gradient(to right, #a78bfa, #22d3ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6645064236411218"
+     crossorigin="anonymous"></script>
 </head>
-<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-300">
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-2 font-heading text-2xl font-bold tracking-tighter gradient-text">
-                <i data-lucide="zap" class="w-6 h-6 text-violet-500 fill-violet-500"></i>
-                FREEWALLS
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div style="width: 60px; height: 60px; background: var(--pika-blue); border-radius: 18px; display: flex; align-items: center; justify-content: center; transform: rotate(-10deg); box-shadow: 0 10px 30px rgba(0, 132, 255, 0.4); margin: 0 auto 1.5rem;">
+                    <span style="font-size: 2rem; font-weight: 900; color: white;">p.</span>
+                </div>
             </div>
-            
-            <div class="flex-1 max-w-2xl relative hidden md:block">
-                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-4 h-4"></i>
-                <input type="text" id="searchInput" placeholder="ค้นหาวอลเปเปอร์ 4K..." 
-                    class="w-full bg-zinc-100 dark:bg-zinc-900 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 ring-violet-500/50 outline-none transition-all">
+            <h1>pika<span style="-webkit-text-fill-color: white;">.</span></h1>
+            <p class="subtitle">curated visual discovery hub</p>
+        </header>
+
+        <!-- Remark Section -->
+        <a href="terms.html" style="text-decoration: none; display: block; transition: var(--transition-smooth); margin-bottom: 3rem;">
+            <div class="remark-box" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 0.8rem 1.5rem; border-radius: 100px; font-size: 0.8rem; color: rgba(255,255,255,0.4); display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); max-width: fit-content; margin: 0 auto;">
+                <span><span style="color: var(--pika-blue); margin-right: 8px;">●</span> โปรดตรวจสอบสิทธิ์ก่อนใช้งานเชิงพาณิชย์</span>
+                <span style="color: white; font-weight: 600; margin-left: 20px; opacity: 0.8;">legal terms →</span>
             </div>
+        </a>
 
-            <div class="flex items-center gap-4">
-                <button id="themeToggle" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-                    <i data-lucide="sun" id="sunIcon" class="w-5 h-5 hidden"></i>
-                    <i data-lucide="moon" id="moonIcon" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <main class="max-w-7xl mx-auto px-4">
-        <!-- Hero Section -->
-        <section class="py-16 text-center space-y-6 relative overflow-hidden">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-full bg-violet-500/10 blur-[120px] rounded-full -z-10"></div>
-            <h1 class="text-4xl md:text-6xl font-heading font-bold tracking-tight">Premium Wallpapers <br><span class="text-violet-500">Free Forever.</span></h1>
-            <p class="text-zinc-500 max-w-xl mx-auto">แหล่งรวมภาพพื้นหลังคุณภาพสูงและ Live Wallpapers สำหรับทุกอุปกรณ์ของคุณ</p>
-        </section>
-
-        <div class="max-w-4xl mx-auto my-8 bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 ad-slot-wrapper">
-            <span class="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 font-bold">Advertisement</span>
+        <!-- Top Ad Unit -->
+        <div style="text-align:center; margin: 2rem 0; min-height: 90px; background: rgba(255,255,255,0.02); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(255,255,255,0.1);">
             <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-width:250px; min-height:90px"
+                 style="display:block"
                  data-ad-client="ca-pub-6645064236411218"
-                 data-ad-slot="default"
+                 data-ad-slot="AUTO"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 
-        <div class="py-8 flex flex-wrap items-center gap-3 justify-center" id="categoryFilters"></div>
+        <section class="search-section">
 
-        <div class="masonry-grid" id="wallpaperGrid"></div>
-
-        <div class="py-12 flex justify-center">
-            <button id="loadMore" class="px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold hover:scale-105 transition-all flex items-center gap-2">
-                โหลดเพิ่มเติม
-            </button>
-        </div>
-    </main>
-
-    <!-- Fullscreen Modal -->
-    <div id="modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden">
-        <div class="absolute inset-0 bg-black/95 backdrop-blur-sm" id="modalOverlay"></div>
-        <div class="relative z-10 max-w-5xl w-full bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]">
-            <button id="closeModal" class="absolute top-4 right-4 z-20 p-2 bg-black/40 text-white rounded-full hover:bg-black/60 transition-colors">
-                <i data-lucide="x"></i>
-            </button>
-            <div class="flex-[2] bg-black flex items-center justify-center overflow-hidden">
-                <div id="modalContent" class="w-full h-full flex items-center justify-center"></div>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="find something beautiful..." autocomplete="off">
+                <button class="search-btn" id="search-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
             </div>
-            <div class="flex-1 p-8 flex flex-col justify-between bg-zinc-900 border-l border-zinc-800">
-                <div class="space-y-6">
-                    <div>
-                        <h2 id="modalTitle" class="text-2xl font-bold text-white">Title</h2>
-                        <p id="modalAuthor" class="text-zinc-400 text-sm mt-1">by Creative Artist</p>
-                    </div>
-                    <div class="py-4 border-y border-zinc-800 ad-slot-wrapper">
-                         <span class="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 font-bold">Sponsored</span>
-                         <ins class="adsbygoogle"
-                              id="modalAd"
-                              style="display:block; width:100%; min-height:100px"
-                              data-ad-client="ca-pub-6645064236411218"
-                              data-ad-slot="default"
-                              data-ad-format="rectangle"></ins>
-                    </div>
-                </div>
-                <div class="space-y-3">
-                    <button id="downloadBtn" class="w-full py-4 bg-gradient-to-r from-violet-600 to-cyan-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-                        <i data-lucide="download"></i> Download 4K
-                    </button>
-                </div>
+        </section>
+
+        <nav class="categories">
+            <div class="cat-chip active" data-query="Wallpaper">all collection</div>
+            <div class="cat-chip" data-query="Architecture">Architecture</div>
+            <div class="cat-chip" data-query="Favorites" id="fav-chip">saved items</div>
+        </nav>
+
+        <div class="filter-bar" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+            <button class="filter-btn active" data-orientation="all">All Sizes</button>
+            <button class="filter-btn" data-orientation="portrait">Mobile (HD)</button>
+            <button class="filter-btn" data-orientation="landscape">Desktop (4K)</button>
+        </div>
+
+
+        <main class="wallpaper-grid" id="wallpaper-grid">
+            <!-- Wallpapers will be injected here -->
+            <div class="wall-card skeleton"></div>
+            <div class="wall-card skeleton"></div>
+            <div class="wall-card skeleton"></div>
+        </main>
+        
+        <!-- Pagination Section -->
+        <div id="pagination" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 4rem; flex-wrap: wrap;"></div>
+        
+        <footer style="margin-top: 8rem; text-align: center; padding-bottom: 4rem; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 4rem;">
+            <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 0.5rem; letter-spacing: -1px; color: white;">pika<span style="color: var(--pika-blue);">.</span></div>
+            <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2rem;">© 2026 curated by humans</p>
+            <div style="font-size: 0.8rem; display: flex; justify-content: center; gap: 2rem;">
+                <a href="terms.html" style="color: white; text-decoration: none; opacity: 0.5; transition: 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">Terms</a>
+                <a href="mailto:sbbdsbshsh334@gmail.com" style="color: white; text-decoration: none; opacity: 0.5; transition: 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">Contact</a>
+                <a href="https://fusions.info/nay" target="_blank" style="color: white; text-decoration: none; opacity: 0.5; transition: 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">Bio</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- License Modal -->
+    <div class="modal" id="license-modal">
+        <span class="close-license" style="position: absolute; top: 20px; right: 30px; font-size: 2rem; cursor: pointer; color: white;">&times;</span>
+        <div class="modal-inner" style="max-width: 600px; background: #0a0a0a; padding: 3rem; border-radius: 32px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6; margin: 10% auto; backdrop-filter: blur(20px);">
+            <h2 style="color: var(--pika-blue); margin-bottom: 2rem; font-weight: 800; letter-spacing: -1px; font-size: 2rem;">legal terms<span style="color:white">.</span></h2>
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <p style="margin-bottom: 1.5rem;">รูปภาพทั้งหมดดึงข้อมูลผ่าน Pexels API เพื่อการอ้างอิงและใช้งานส่วนตัว:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;"><span style="color: var(--pika-blue)">●</span> ใช้งานได้ฟรีเพื่อวัตถุประสงค์ส่วนตัว</li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;"><span style="color: var(--pika-blue)">●</span> โปรดตรวจสอบสิทธิ์ก่อนนำไปใช้ในเชิงพาณิชย์</li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;"><span style="color: var(--pika-blue)">●</span> เราให้เครดิตช่างภาพเจ้าของผลงานเสมอ</li>
+                </ul>
+                <p style="margin-top: 2rem; font-size: 0.75rem; opacity: 0.6; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05);">*pika. เป็นเพียงแพลตฟอร์มรวบรวมไอเดียเพื่อความสวยงามเท่านั้น</p>
             </div>
         </div>
     </div>
 
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-12 text-center text-zinc-500 text-sm">
-        <p>© 2024 FreeWalls Hub. Ads by Google AdSense.</p>
-    </footer>
 
-    <script>
-        const CATEGORIES = ['Nature', 'Anime', 'Cars', 'Space', 'Abstract', 'Minimal', 'Gaming'];
-        const MOCK_DATA = Array.from({ length: 12 }).map((_, i) => ({
-            id: i,
-            title: `Wallpaper ${i + 1}`,
-            author: 'Creative Artist',
-            url: `https://picsum.photos/seed/${i + 20}/800/${i % 2 === 0 ? '1200' : '800'}`,
-            isLive: i % 4 === 0,
-            videoUrl: i % 4 === 0 ? 'https://assets.mixkit.co/videos/preview/mixkit-star-field-in-deep-space-34356-large.mp4' : null
-        }));
+    <!-- Modal for full size view -->
+    <div class="modal" id="image-modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-inner">
+            <div class="modal-image-frame" id="modal-frame">
+                <img src="" alt="Full view" class="modal-content" id="modal-img">
+            </div>
+            <div class="modal-actions-overlay">
+                <a id="modal-download-link" href="#" target="_blank" download class="download-btn-large">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    DOWNLOAD ASSETS
+                </a>
+            </div>
+        </div>
+    </div>
 
-        let activeCategory = 'Nature';
-        const grid = document.getElementById('wallpaperGrid');
-        const modal = document.getElementById('modal');
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <span class="cookie-icon">🍪</span>
+            <p>เราใช้คุกกี้เพื่อเพิ่มประสิทธิภาพในการใช้งานและแสดงโฆษณาที่เหมาะสมกับคุณ <a href="terms.html">อ่านนโยบายเพิ่มเติม</a></p>
+            <div class="cookie-actions">
+                <button id="accept-cookies" class="cookie-btn primary">ยอมรับทั้งหมด</button>
+                <button id="decline-cookies" class="cookie-btn secondary">ปฏิเสธ</button>
+            </div>
+        </div>
+    </div>
 
-        function initIcons() { lucide.createIcons(); }
+    <!-- Back to Top -->
+    <button id="back-to-top" class="back-to-top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
 
-        function pushAds() {
-            try {
-                const ads = document.querySelectorAll('.adsbygoogle:not([data-adsbygoogle-status])');
-                ads.forEach(ad => {
-                    // Only push if parent has width
-                    if (ad.parentElement.offsetWidth > 0) {
-                        (window.adsbygoogle = window.adsbygoogle || []).push({});
-                    }
-                });
-            } catch (e) {
-                console.error("AdSense Push Error: ", e);
-            }
-        }
-
-        function renderWallpapers() {
-            grid.innerHTML = MOCK_DATA.map(wp => `
-                <div class="wallpaper-card group relative rounded-2xl overflow-hidden cursor-zoom-in bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800" onclick="openModal(${wp.id})">
-                    ${wp.isLive ? `
-                        <div class="absolute top-3 left-3 z-10 bg-black/50 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-md flex items-center gap-1 font-bold">LIVE</div>
-                        <video src="${wp.videoUrl}" loop muted playsinline class="w-full h-auto object-cover" onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    ` : `
-                        <img src="${wp.url}" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
-                    `}
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
-                        <h3 class="text-white text-sm font-bold truncate">${wp.title}</h3>
-                    </div>
-                </div>
-            `).join('');
-            initIcons();
-        }
-
-        function openModal(id) {
-            const wp = MOCK_DATA.find(i => i.id === id);
-            document.getElementById('modalTitle').innerText = wp.title;
-            document.getElementById('modalContent').innerHTML = wp.isLive 
-                ? `<video src="${wp.videoUrl}" autoplay loop muted class="max-h-full w-auto"></video>`
-                : `<img src="${wp.url}" class="max-h-full w-auto object-contain" />`;
-            
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-
-            // Special handling for Ad in Modal after it's visible
-            setTimeout(() => {
-                const modalAd = document.getElementById('modalAd');
-                if (modalAd && !modalAd.hasAttribute('data-adsbygoogle-status')) {
-                    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
-                }
-            }, 300);
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        window.onload = () => {
-            renderWallpapers();
-            
-            // Wait for Tailwind and DOM to settle before pushing ads
-            setTimeout(pushAds, 500);
-
-            document.getElementById('modalOverlay').onclick = closeModal;
-            document.getElementById('closeModal').onclick = closeModal;
-            document.getElementById('themeToggle').onclick = () => {
-                document.documentElement.classList.toggle('dark');
-            };
-        };
-    </script>
+    <script src="script.js"></script>
+    <!-- Vercel Speed Insights -->
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
